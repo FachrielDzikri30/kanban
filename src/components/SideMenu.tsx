@@ -51,6 +51,7 @@ const styles: CSSProperties = {
     padding: '20px',
     minHeight: '100vh',
     height: '100%',
+    width: 'min-content'
   },
   link: {
     ...commonLinkStyles,
