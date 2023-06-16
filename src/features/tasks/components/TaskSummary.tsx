@@ -40,6 +40,7 @@ const TaskSummary = (): JSX.Element => {
 const styles: CSSProperties = {
   container: {
     padding: '40px',
+    width: "100%",
   },
   heading: {
     color: '#55C89F',

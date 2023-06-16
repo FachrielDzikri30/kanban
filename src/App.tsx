@@ -3,12 +3,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import SideMenuLayout from "./layouts/SideMenuLayout"
 import { RecoilRoot } from "recoil"
 import TaskSummary from './features/tasks/components/TaskSummary'
+import TaskList from "./components/Tasks/TaskList"
+import TaskProgress from "./features/tasks/components/TaskProgress/TaskProgress"
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <div style={{display:'flex'}}>
+      <div>
         <SideMenuLayout />
       </div>
      ),
@@ -19,11 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'task-list',
-        element: <h1>Task List</h1>
+        element: <TaskList />
       },
       {
         path: 'task-progress',
-        element: <h1>Task Progress</h1>
+        element: <TaskProgress />
       },
     ]
   }
