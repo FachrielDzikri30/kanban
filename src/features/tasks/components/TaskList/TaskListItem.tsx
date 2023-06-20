@@ -1,10 +1,9 @@
 import React from 'react'
-import type { Task, CSSProperties } from '../../types'
+import type { Task, CSSProperties } from '../../../../types'
 
 interface TaskListItemProps {
   task: Task
 }
-
 
 const getProgressCategory = (progressOrder: number): string => {
     switch (progressOrder) {
@@ -30,15 +29,12 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
       </div>
       <div style={styles.tableBodyDetail}>{task.detail}</div>
       <div style={styles.tableBodyDueDate}>{task.dueDate}</div>
-      <div style={styles.tableBodyprogress}>
-        {getProgressCategory(task.progressOrder)}
-      </div>
+      <div style={styles.tableBodyprogress}>{getProgressCategory(task.progressOrder)}</div>
       <div>
         <span className="material-icons" style={styles.menuIcon}>
           more_horiz
         </span>
       </div>
-      
     </div>
   )
 }

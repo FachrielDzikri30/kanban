@@ -1,8 +1,8 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil'
-import { tasksState } from '../../features/tasks/TaskAtoms'
+import { tasksState } from '../../TaskAtoms'
 import TaskListItem from './TaskListItem'
-import type { Task, CSSProperties } from '../../types'
+import type { Task, CSSProperties } from '../../../../types'
 
 const TaskList = (): JSX.Element => {
   const tasks: Task[] = useRecoilValue(tasksState)
