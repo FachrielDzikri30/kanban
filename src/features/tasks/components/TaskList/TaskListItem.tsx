@@ -4,8 +4,7 @@ import {
     TASK_PROGRESS_STATUS,
     TASK_PROGRESS_ID,
 } from '../../../../constants/app'
-import { useRecoilState } from 'recoil'
-import { tasksState } from '../../TaskAtoms'
+import { useTaskAction } from '../hooks/Tasks'
 
 interface TaskListItemProps {
   task: Task
@@ -42,14 +41,7 @@ const getProgressCategory = (progressOrder: number): string => {
   }
 
 const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
-  const [tasks, setTasks] = useRecoilState<Task[]> (tasksState)
-  
-  const completeTask = (taskId: number): void => {
-    const updateTasks: Task[] = tasks.map((task) => task.id === taskId ?
-        { ...task, progressOrder: TASK_PROGRESS_ID.COMPLETED} : task,
-    )
-    setTasks(updateTasks)
-  }
+  const {completeTask} = useTaskAction()
 
   return (
     <div style={styles.tableBody}>
