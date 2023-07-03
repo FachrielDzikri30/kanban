@@ -5,6 +5,7 @@ import TaskModal from "./TaskModal"
 import {
     TASK_MODAL_TYPE,
     TASK_PROGRESS_ID,
+    TASK_PROGRESS_STATUS
 } from '../../../../constants/app'
 
 interface TaskMenuProps {
