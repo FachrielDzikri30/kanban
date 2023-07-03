@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
-import { useRecoilValue } from 'recoil'
-import { tasksState } from '../../TaskAtoms'
+import React, { Suspense, useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { taskFilterState, tasksState } from '../../TaskAtoms'
 import TaskListItem from './TaskListItem'
 import type { Task, CSSProperties } from '../../../../types'
 import { TASK_PROGRESS_ID, TASK_MODAL_TYPE } from '../../../../constants/app'
 import TaskModal from '../shared/TaskModal'
+import TaskFilter from '../shared/TaskFilter'
 
 const TaskList = (): JSX.Element => {
   const tasks: Task[] = useRecoilValue(tasksState)
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
+  
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+
+  const setTaskFilter = useSetRecoilState(taskFilterState)
 
   return (
     <div style={styles.container}>
@@ -23,8 +30,15 @@ const TaskList = (): JSX.Element => {
           <span className="material-icons">add</span>Add task
         </button>
         <button style={styles.button}>
-          <span className="material-icons">sort</span>Filter tasks
+          <span 
+            className="material-icons"
+            onClick={(): void => {
+              setIsFilterOpen(!isFilterOpen)
+              setIsMenuOpen(!isMenuOpen)
+            }}
+          >sort</span>Filter tasks
         </button>
+        
       </div>
       <div>
         <div style={styles.tableHead}>
@@ -43,6 +57,15 @@ const TaskList = (): JSX.Element => {
             setIsModalOpen={setIsModalOpen}
             defaultProgressOrder={TASK_PROGRESS_ID.NOT_STARTED}
           />
+        )}
+        {/* {isFilterOpen && <TaskFilter setIsFilterOpen={setIsFilterOpen}/>} */}
+        {isFilterOpen && (
+          <Suspense fallback={<div>Loading</div>}>
+            <TaskFilter 
+              setIsFilterOpen={setIsFilterOpen}
+              setIsMenuOpen={setIsMenuOpen}
+            />
+          </Suspense>
         )}
       </div>
     </div>

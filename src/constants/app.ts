@@ -16,3 +16,9 @@ export const TASK_PROGRESS_STATUS = {
     ADD:'add',
     EDIT:'edit',
   }
+
+  export const TASK_FILTER = {
+    ALL: 'all',
+    COMPLETED: 'completed',
+    UNCOMPLETED: 'uncompleted',
+  }

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { Task, CSSProperties } from '../../../../types'
 import { TASK_PROGRESS_ID } from '../../../../constants/app'
 import { useTaskAction } from '../hooks/Tasks'
+import TaskMenu from '../shared/TaskMenu'
 
 interface TaskCardProps {
   task: Task
@@ -31,8 +32,10 @@ const getArrowPositionStyle = (progressOrder: number): React.CSSProperties => {
 }
 
 const TaskCard = ({ task }: TaskCardProps): JSX.Element => {
-  const {completeTask} = useTaskAction()
+  const {completeTask, moveTaskCard} = useTaskAction()
   
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+
   return (
     <div style={styles.taskCard}>
       <div style={styles.taskIcons}>
@@ -44,7 +47,12 @@ const TaskCard = ({ task }: TaskCardProps): JSX.Element => {
           }}>
             check_circle
         </div>
-        <div className="material-icons" style={styles.menuIcon}>
+        <div 
+          className="material-icons" 
+          style={styles.menuIcon}
+          onClick={():void => {
+            setIsMenuOpen(true)
+          }}>
           more_vert
         </div>
       </div>
@@ -57,12 +65,21 @@ const TaskCard = ({ task }: TaskCardProps): JSX.Element => {
       </div>
       <div style={getArrowPositionStyle(task.progressOrder)}>
         {task.progressOrder !== TASK_PROGRESS_ID.NOT_STARTED && (
-          <button className="material-icons">chevron_left</button>
+          <button 
+          className="material-icons" 
+          onClick={():void => {
+            moveTaskCard(task.id,-1)
+          }}>chevron_left</button>
         )}
         {task.progressOrder !== TASK_PROGRESS_ID.COMPLETED && (
-          <button className="material-icons">chevron_right</button>
+          <button 
+          className="material-icons"
+          onClick={():void => {
+            moveTaskCard(task.id,1)
+          }}>chevron_right</button>
         )}
       </div>
+      {isMenuOpen && <TaskMenu setIsMenuOpen = {setIsMenuOpen} />}
     </div>
   )
 }

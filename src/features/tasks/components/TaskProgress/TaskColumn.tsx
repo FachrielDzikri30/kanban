@@ -5,11 +5,25 @@ import TaskModal from '../shared/TaskModal'
 import {
   TASK_MODAL_TYPE,
   TASK_PROGRESS_ID,
+  TASK_PROGRESS_STATUS
 } from '../../../../constants/app'
 
 interface TaskColumnProps {
   columnTitle: string
   tasks: Task[]
+}
+
+const getProgressOrder = (columnTitle: string): number => {
+  switch (columnTitle){
+    case TASK_PROGRESS_STATUS.IN_PROGRESS:
+      return TASK_PROGRESS_ID.IN_PROGRESS
+    case TASK_PROGRESS_STATUS.WAITING:
+      return TASK_PROGRESS_ID.WAITING
+    case TASK_PROGRESS_STATUS.COMPLETED:
+      return TASK_PROGRESS_ID.COMPLETED
+    default:
+      return TASK_PROGRESS_ID.NOT_STARTED
+  }
 }
 
 const TaskColumn = ({ columnTitle, tasks }: TaskColumnProps): JSX.Element => {
@@ -38,7 +52,7 @@ const TaskColumn = ({ columnTitle, tasks }: TaskColumnProps): JSX.Element => {
             headingTitle = "Add your task"
             type = {TASK_MODAL_TYPE.ADD}
             setIsModalOpen={setIsModalOpen}
-            defaultProgressOrder={TASK_PROGRESS_ID.NOT_STARTED}
+            defaultProgressOrder={getProgressOrder(columnTitle)}
           />
         )}
       </div>

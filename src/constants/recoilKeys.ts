@@ -1,5 +1,6 @@
 export const AtomKeys = {
     TASKS: 'tasks',
+    TASK_FILTER: 'taskfilter',
   }
   
   export const SelectorKeys = {
