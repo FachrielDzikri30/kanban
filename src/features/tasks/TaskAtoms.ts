@@ -1,5 +1,6 @@
 import { atom } from 'recoil'
 import { AtomKeys } from '../../constants/recoilKeys'
+import { TASK_FILTER } from '../../constants/app'
 
 export const tasksState = atom({
   key: AtomKeys.TASKS,
@@ -47,4 +48,9 @@ export const tasksState = atom({
       progressOrder: 4,
     },
   ],
+})
+
+export const taskFilterState = atom({
+  key: AtomKeys.TASK_FILTER,
+  default: TASK_FILTER.ALL,
 })
