@@ -1,23 +1,31 @@
 import React from "react"
 import type { Dispatch, SetStateAction } from "react"
 import type { CSSProperties } from "../../../../types"
+import { TASK_FILTER } from "../../../../constants/app"
 
 interface TaskFilterProps {
     setIsFilterOpen : Dispatch<SetStateAction<boolean>>
     setIsMenuOpen: Dispatch<SetStateAction<boolean>>
+    setTaskFilter: Dispatch<SetStateAction<string>>
 }
 
-const TaskFilter = ({setIsFilterOpen}: TaskFilterProps): JSX.Element => {
+const TaskFilter = ({setIsFilterOpen, setTaskFilter}: TaskFilterProps): JSX.Element => {
     return (
         <div style={styles.menu}>
             <div style={styles.menuItem}>
-                <span className="material-icons">done</span>Completed Tasks
+                <span className="material-icons" onClick={(): void => {
+                    setTaskFilter(TASK_FILTER.COMPLETED)
+                }}>done</span>Completed Tasks
             </div>
             <div style={styles.menuItem}>
-                <span className="material-icons">list</span>Uncompleted Tasks
+                <span className="material-icons" onClick={(): void => {
+                    setTaskFilter(TASK_FILTER.UNCOMPLETED)
+                }}>list</span>Uncompleted Tasks
             </div>
             <div style={styles.menuItem}>
-                <span className="material-icons">clear-all</span>All Tasks
+                <span className="material-icons" onClick={(): void => {
+                    setTaskFilter(TASK_FILTER.ALL)
+                }}>clear-all</span>All Tasks
             </div>
             <span   
                 className="material-icons"

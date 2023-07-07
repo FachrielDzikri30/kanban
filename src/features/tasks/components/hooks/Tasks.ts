@@ -12,6 +12,7 @@ interface useTaskActionType {
         dueDate: string,
         progressOrder: number,
     ) => void
+    deleteTask: (taskId:number) => void
 }
 
 export const useTaskAction = (): useTaskActionType => {
@@ -61,10 +62,16 @@ export const useTaskAction = (): useTaskActionType => {
         }
         setTasks([...tasks, newTask])
     }
+    
+    //perlu ditanyain 
+    const deleteTask = (taskId: number): void => {
+        setTasks(tasks.filter((task): boolean => task.id !== taskId))
+    }
 
     return {
         completeTask,
         moveTaskCard,
         addTask,
+        deleteTask,
     }
 }
