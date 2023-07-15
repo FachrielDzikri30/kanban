@@ -64,7 +64,7 @@ const TaskList = (): JSX.Element => {
             <TaskFilter 
               setIsFilterOpen={setIsFilterOpen}
               setIsMenuOpen={setIsMenuOpen}
-              setTaskfilter={setTaskFilter}
+              setTaskFilter={setTaskFilter}
             />
           </Suspense>
         )}

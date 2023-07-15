@@ -43,11 +43,11 @@ const TaskMenu = ({setIsMenuOpen, task, columnTitle}: TaskMenuProps): JSX.Elemen
                 >edit</span>Edit
                 </div>
             </div>
-            <div style={styles.menuItem}>
-                <span className="material-icons" onClick={(): void => {
+            <div style={styles.menuItem} onClick={(): void => {
                     deleteTask(task.id)
                     setIsModalOpen(false)
-                }}>delete</span>Delete
+                }}>
+                <span className="material-icons">delete</span>Delete
             </div>
             <span   
                 className="material-icons"
