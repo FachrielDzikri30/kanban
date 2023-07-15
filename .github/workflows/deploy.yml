@@ -1,4 +1,4 @@
-name: Deploy KanbanApp to Pages
+name: Deploy KanbanApp_react to Pages
 
 on:
   push:
