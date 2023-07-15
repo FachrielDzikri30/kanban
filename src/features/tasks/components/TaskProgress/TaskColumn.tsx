@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import TaskCard from './TaskCard'
 import type { Task, CSSProperties } from '../../../../types'
 import TaskModal from '../shared/TaskModal'
