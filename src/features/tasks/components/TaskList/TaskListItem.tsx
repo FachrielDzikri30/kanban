@@ -72,7 +72,7 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
           more_horiz
         </span>
       </div>
-      {isMenuOpen && <TaskMenu setIsMenuOpen = {setIsMenuOpen} />}
+      {isMenuOpen && <TaskMenu setIsMenuOpen={setIsMenuOpen} columnTitle={''} task={undefined} />}
     </div>
   )
 }
