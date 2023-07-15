@@ -1,18 +1,16 @@
 import {useState} from "react"
 import type { Dispatch, SetStateAction } from "react"
-import type { CSSProperties, Task} from "../../../../types"
+import type { CSSProperties} from "../../../../types"
 import TaskModal from "./TaskModal"
 import {
     TASK_MODAL_TYPE,
     TASK_PROGRESS_ID,
     TASK_PROGRESS_STATUS
 } from '../../../../constants/app'
-import { useTaskAction } from "../hooks/Tasks"
 
 interface TaskMenuProps {
     setIsMenuOpen : Dispatch<SetStateAction<boolean>>
     columnTitle: string
-    task:Task
 }
 
 const getProgressOrder = (columnTitle: string): number => {
@@ -28,9 +26,8 @@ const getProgressOrder = (columnTitle: string): number => {
     }
   }
 
-const TaskMenu = ({setIsMenuOpen, task, columnTitle}: TaskMenuProps): JSX.Element => {
+const TaskMenu = ({setIsMenuOpen, columnTitle}: TaskMenuProps): JSX.Element => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-    const {deleteTask} = useTaskAction()
     return (
         <div style={styles.menu}>
             <div style={styles.menuItem}>
@@ -44,7 +41,6 @@ const TaskMenu = ({setIsMenuOpen, task, columnTitle}: TaskMenuProps): JSX.Elemen
                 </div>
             </div>
             <div style={styles.menuItem} onClick={(): void => {
-                    deleteTask(task.id)
                     setIsModalOpen(false)
                 }}>
                 <span className="material-icons">delete</span>Delete
